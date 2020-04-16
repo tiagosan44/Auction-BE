@@ -1,0 +1,11 @@
+version: '2'
+services:
+  auction-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/Auction/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=Auction
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

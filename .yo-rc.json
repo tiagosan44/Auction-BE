@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.tiagosan44.auction",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "Auction",
+    "packageName": "com.tiagosan44.auction",
+    "packageFolder": "com/tiagosan44/com",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ODUxZDYyNDFiNzcwMjBlNThmYzQ1OWEwZWNiMDY1OTFhNTk4ZGMyMDA0ZDNkMzMxMmY2NTM1OWYxOTZhODZmZGY0MzhhMDkwZDliYzY4MWNmNDJkZTFhYTkyZTBkNGFmOWFkYjQ4ZWQzMzZlMjA3YzkxY2ZlOTM3ZmU0ZmJhMzg=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1586918187603,
+    "testFrameworks": ["cucumber"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": ["en", "es"],
+    "blueprints": [],
+    "skipClient": true
+  }
+}
