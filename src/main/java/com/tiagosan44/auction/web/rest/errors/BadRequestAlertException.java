@@ -1,5 +1,7 @@
 package com.tiagosan44.auction.web.rest.errors;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.Status;
 
@@ -7,13 +9,14 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BadRequestAlertException extends AbstractThrowableProblem {
 
     private static final long serialVersionUID = 1L;
 
-    private final String entityName;
+    String entityName;
 
-    private final String errorKey;
+    String errorKey;
 
     public BadRequestAlertException(String defaultMessage, String entityName, String errorKey) {
         this(ErrorConstants.DEFAULT_TYPE, defaultMessage, entityName, errorKey);

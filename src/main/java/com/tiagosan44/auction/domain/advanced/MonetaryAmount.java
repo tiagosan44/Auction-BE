@@ -1,19 +1,19 @@
 package com.tiagosan44.auction.domain.advanced;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PROTECTED, makeFinal = true)
 public class MonetaryAmount implements Serializable {
 
-	protected final BigDecimal value;
-	protected final Currency currency;
-
-	public MonetaryAmount(BigDecimal value, Currency currency) {
-		this.value = value;
-		this.currency = currency;
-	}
+	BigDecimal value;
+	Currency currency;
 
 	public BigDecimal getValue() {
 		return value;

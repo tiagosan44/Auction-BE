@@ -1,14 +1,13 @@
 package com.tiagosan44.auction.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 
@@ -19,19 +18,21 @@ import java.util.Set;
 @ToString
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Immutable
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class State {
 
 	@Id
 	@EqualsAndHashCode.Include
 	@Column(name = "state_id")
-	private Short id;
+	Short id;
 
-	private String state;
+	@NotBlank
+	String state;
 
-	private String code;
+	String code;
 
 	@OneToMany(mappedBy = "state", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<City> cities;
+	Set<City> cities;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "country_id")

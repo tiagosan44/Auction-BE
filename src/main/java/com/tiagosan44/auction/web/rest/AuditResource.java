@@ -4,6 +4,9 @@ import com.tiagosan44.auction.service.AuditEventService;
 
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,13 +26,11 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/management/audits")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuditResource {
 
-    private final AuditEventService auditEventService;
-
-    public AuditResource(AuditEventService auditEventService) {
-        this.auditEventService = auditEventService;
-    }
+    AuditEventService auditEventService;
 
     /**
      * {@code GET /audits} : get a page of {@link AuditEvent}s.

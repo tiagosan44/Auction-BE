@@ -9,6 +9,10 @@ import java.util.Locale;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -25,31 +29,23 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
  * <p>
  * We use the {@link Async} annotation to send emails asynchronously.
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class MailService {
-
-    private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
 
     private static final String BASE_URL = "baseUrl";
 
-    private final JHipsterProperties jHipsterProperties;
+    JHipsterProperties jHipsterProperties;
 
-    private final JavaMailSender javaMailSender;
+    JavaMailSender javaMailSender;
 
-    private final MessageSource messageSource;
+    MessageSource messageSource;
 
-    private final SpringTemplateEngine templateEngine;
-
-    public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
-            MessageSource messageSource, SpringTemplateEngine templateEngine) {
-
-        this.jHipsterProperties = jHipsterProperties;
-        this.javaMailSender = javaMailSender;
-        this.messageSource = messageSource;
-        this.templateEngine = templateEngine;
-    }
+    SpringTemplateEngine templateEngine;
 
     @Async
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {

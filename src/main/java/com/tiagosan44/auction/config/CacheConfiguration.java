@@ -2,6 +2,8 @@ package com.tiagosan44.auction.config;
 
 import java.time.Duration;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.ehcache.config.builders.*;
 import org.ehcache.jsr107.Eh107Configuration;
 
@@ -15,9 +17,10 @@ import org.springframework.context.annotation.*;
 
 @Configuration
 @EnableCaching
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CacheConfiguration {
 
-    private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
+    javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 
     public CacheConfiguration(JHipsterProperties jHipsterProperties) {
         JHipsterProperties.Cache.Ehcache ehcache = jHipsterProperties.getCache().getEhcache();

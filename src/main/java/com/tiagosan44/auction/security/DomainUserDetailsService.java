@@ -2,6 +2,10 @@ package com.tiagosan44.auction.security;
 
 import com.tiagosan44.auction.domain.User;
 import com.tiagosan44.auction.repository.UserRepository;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,16 +23,13 @@ import java.util.stream.Collectors;
 /**
  * Authenticate a user from the database.
  */
+@Slf4j
+@RequiredArgsConstructor
 @Component("userDetailsService")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class DomainUserDetailsService implements UserDetailsService {
 
-    private final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
-
-    private final UserRepository userRepository;
-
-    public DomainUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    UserRepository userRepository;
 
     @Override
     @Transactional

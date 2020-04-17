@@ -3,6 +3,9 @@ package com.tiagosan44.auction.config;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.config.liquibase.SpringLiquibaseUtil;
 import liquibase.integration.spring.SpringLiquibase;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
@@ -19,11 +22,11 @@ import javax.sql.DataSource;
 import java.util.concurrent.Executor;
 
 @Configuration
+@Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class LiquibaseConfiguration {
 
-    private final Logger log = LoggerFactory.getLogger(LiquibaseConfiguration.class);
-
-    private final Environment env;
+    Environment env;
 
     public LiquibaseConfiguration(Environment env) {
         this.env = env;

@@ -1,7 +1,9 @@
 package com.tiagosan44.auction.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,19 +13,20 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Entity
-public class CreditCard extends com.tiagosan44.auction.domain.BillingDetails
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class CreditCard extends BillingDetails
 {
 	@Size(max = 10, min = 10)
 	@Column(length = 10)
-	private String number;
+	String number;
 
 	@Column(precision = 2)
-	private Short expireMonth;
+	Short expireMonth;
 
 	@Column(precision = 2)
-	private Short expireYear;
+	Short expireYear;
 
 	@Size(max = 3, min = 3)
 	@Column(length = 3)
-	private String cvv;
+	String cvv;
 }

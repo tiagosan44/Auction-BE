@@ -1,6 +1,9 @@
 package com.tiagosan44.auction.config;
 
 import io.github.jhipster.async.ExceptionHandlingAsyncTaskExecutor;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
@@ -18,11 +21,11 @@ import java.util.concurrent.Executor;
 @Configuration
 @EnableAsync
 @EnableScheduling
+@Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AsyncConfiguration implements AsyncConfigurer {
 
-    private final Logger log = LoggerFactory.getLogger(AsyncConfiguration.class);
-
-    private final TaskExecutionProperties taskExecutionProperties;
+    TaskExecutionProperties taskExecutionProperties;
 
     public AsyncConfiguration(TaskExecutionProperties taskExecutionProperties) {
         this.taskExecutionProperties = taskExecutionProperties;

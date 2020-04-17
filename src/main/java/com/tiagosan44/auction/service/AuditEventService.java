@@ -3,6 +3,10 @@ package com.tiagosan44.auction.service;
 import io.github.jhipster.config.JHipsterProperties;
 import com.tiagosan44.auction.config.audit.AuditEventConverter;
 import com.tiagosan44.auction.repository.PersistenceAuditEventRepository;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.audit.AuditEvent;
@@ -21,26 +25,18 @@ import java.util.Optional;
  * <p>
  * This is the default implementation to support SpringBoot Actuator {@code AuditEventRepository}.
  */
+@Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuditEventService {
 
-    private final Logger log = LoggerFactory.getLogger(AuditEventService.class);
+    JHipsterProperties jHipsterProperties;
 
-    private final JHipsterProperties jHipsterProperties;
+    PersistenceAuditEventRepository persistenceAuditEventRepository;
 
-    private final PersistenceAuditEventRepository persistenceAuditEventRepository;
-
-    private final AuditEventConverter auditEventConverter;
-
-    public AuditEventService(
-        PersistenceAuditEventRepository persistenceAuditEventRepository,
-        AuditEventConverter auditEventConverter, JHipsterProperties jhipsterProperties) {
-
-        this.persistenceAuditEventRepository = persistenceAuditEventRepository;
-        this.auditEventConverter = auditEventConverter;
-        this.jHipsterProperties = jhipsterProperties;
-    }
+    AuditEventConverter auditEventConverter;
 
     /**
      * Old audit events should be automatically deleted after 30 days.

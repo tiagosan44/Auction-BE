@@ -12,6 +12,10 @@ import com.tiagosan44.auction.service.dto.UserDTO;
 
 import io.github.jhipster.security.RandomUtil;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -30,26 +34,20 @@ import java.util.stream.Collectors;
 /**
  * Service class for managing users.
  */
+@Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserService {
 
-    private final Logger log = LoggerFactory.getLogger(UserService.class);
+    UserRepository userRepository;
 
-    private final UserRepository userRepository;
+    PasswordEncoder passwordEncoder;
 
-    private final PasswordEncoder passwordEncoder;
+    AuthorityRepository authorityRepository;
 
-    private final AuthorityRepository authorityRepository;
-
-    private final CacheManager cacheManager;
-
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.authorityRepository = authorityRepository;
-        this.cacheManager = cacheManager;
-    }
+    CacheManager cacheManager;
 
     public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);

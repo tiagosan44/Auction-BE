@@ -4,6 +4,9 @@ import com.tiagosan44.auction.config.Constants;
 import com.tiagosan44.auction.config.audit.AuditEventConverter;
 import com.tiagosan44.auction.domain.PersistentAuditEvent;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.audit.AuditEvent;
@@ -19,6 +22,8 @@ import java.util.*;
  * An implementation of Spring Boot's {@link AuditEventRepository}.
  */
 @Repository
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CustomAuditEventRepository implements AuditEventRepository {
 
     private static final String AUTHORIZATION_FAILURE = "AUTHORIZATION_FAILURE";
@@ -28,18 +33,11 @@ public class CustomAuditEventRepository implements AuditEventRepository {
      */
     protected static final int EVENT_DATA_COLUMN_MAX_LENGTH = 255;
 
-    private final PersistenceAuditEventRepository persistenceAuditEventRepository;
+    PersistenceAuditEventRepository persistenceAuditEventRepository;
 
-    private final AuditEventConverter auditEventConverter;
+    AuditEventConverter auditEventConverter;
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
-    public CustomAuditEventRepository(PersistenceAuditEventRepository persistenceAuditEventRepository,
-            AuditEventConverter auditEventConverter) {
-
-        this.persistenceAuditEventRepository = persistenceAuditEventRepository;
-        this.auditEventConverter = auditEventConverter;
-    }
+    Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
     public List<AuditEvent> find(String principal, Instant after, String type) {

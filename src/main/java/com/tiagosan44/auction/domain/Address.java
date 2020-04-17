@@ -1,15 +1,20 @@
 package com.tiagosan44.auction.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Getter
 @Setter
 @Entity
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Address
 {
 	@Id
@@ -18,6 +23,8 @@ public class Address
 	@Column(name = "address_id")
 	Long id;
 
+    @NotBlank
+    @Size(min = 3, max = 100)
 	String address;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -27,5 +34,5 @@ public class Address
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
-	private User user;
+	User user;
 }

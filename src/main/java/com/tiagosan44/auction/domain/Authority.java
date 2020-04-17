@@ -1,8 +1,10 @@
 package com.tiagosan44.auction.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -21,6 +23,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Authority implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,12 +32,12 @@ public class Authority implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authoritySequenceGenerator")
     @SequenceGenerator(name = "authoritySequenceGenerator", sequenceName = "authorities_sequence", allocationSize = 1)
     @Column(name = "authority_id")
-    private Short id;
+    Short id;
 
     @NotNull
     @Size(max = 50)
     @Column(length = 50)
-    private String authority;
+    String authority;
 
     @Override
     public boolean equals(Object o) {

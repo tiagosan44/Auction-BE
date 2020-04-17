@@ -1,6 +1,10 @@
 package com.tiagosan44.auction.config;
 
 import io.github.jhipster.config.JHipsterProperties;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.server.*;
@@ -19,19 +23,15 @@ import javax.servlet.*;
 /**
  * Configuration of web application with Servlet 3.0 APIs.
  */
+@Slf4j
 @Configuration
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class WebConfigurer implements ServletContextInitializer {
 
-    private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
+    Environment env;
 
-    private final Environment env;
-
-    private final JHipsterProperties jHipsterProperties;
-
-    public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {
-        this.env = env;
-        this.jHipsterProperties = jHipsterProperties;
-    }
+    JHipsterProperties jHipsterProperties;
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {

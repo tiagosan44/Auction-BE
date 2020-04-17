@@ -1,27 +1,19 @@
 package com.tiagosan44.auction.web.rest.vm;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+
 /**
  * View Model object for storing the user's key and password.
  */
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class KeyAndPasswordVM {
 
-    private String key;
+    String key;
 
-    private String newPassword;
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
+    String newPassword;
 }

@@ -11,6 +11,10 @@ import com.tiagosan44.auction.web.rest.errors.*;
 import com.tiagosan44.auction.web.rest.vm.KeyAndPasswordVM;
 import com.tiagosan44.auction.web.rest.vm.ManagedUserVM;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +28,11 @@ import java.util.*;
 /**
  * REST controller for managing the current user's account.
  */
+@Slf4j
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AccountResource {
 
     private static class AccountResourceException extends RuntimeException {
@@ -34,20 +41,11 @@ public class AccountResource {
         }
     }
 
-    private final Logger log = LoggerFactory.getLogger(AccountResource.class);
+    UserRepository userRepository;
 
-    private final UserRepository userRepository;
+    UserService userService;
 
-    private final UserService userService;
-
-    private final MailService mailService;
-
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
-
-        this.userRepository = userRepository;
-        this.userService = userService;
-        this.mailService = mailService;
-    }
+    MailService mailService;
 
     /**
      * {@code POST  /register} : register the user.
