@@ -30,7 +30,7 @@ public class Phone
 	String phoneNumber;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", foreignKey=@ForeignKey(name = "phone_user_id_fk"))
 	@JsonIgnore
 	User user;
 }

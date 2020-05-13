@@ -37,6 +37,6 @@ public class City {
 	Set<Address> addresses;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "state_id")
+	@JoinColumn(name = "state_id", foreignKey=@ForeignKey(name = "city_state_id_fk"))
     State state;
 }

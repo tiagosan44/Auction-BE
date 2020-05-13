@@ -24,7 +24,8 @@ public class UserImage
 
 	@MapsId
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	@JoinColumn(name = "user_id",
+        foreignKey=@ForeignKey(name = "user_image_user_id_fk"))
 	User user;
 
 }

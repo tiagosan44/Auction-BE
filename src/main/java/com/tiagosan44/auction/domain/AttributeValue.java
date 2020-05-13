@@ -30,7 +30,7 @@ public class AttributeValue {
     String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attribute_id")
+    @JoinColumn(name = "attribute_id", foreignKey=@ForeignKey(name = "attribute_value_attribute_id_fk"))
     @JsonIgnore
     Attribute attribute;
 }

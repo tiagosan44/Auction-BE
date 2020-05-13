@@ -27,7 +27,7 @@ public abstract class BillingDetails
 	String owner;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", foreignKey=@ForeignKey(name = "billing_details_user_id_fk"))
 	@JsonIgnore
 	User user;
 }

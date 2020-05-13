@@ -34,7 +34,7 @@ public class Category
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_id")
+	@JoinColumn(name = "parent_id", foreignKey=@ForeignKey(name = "category_parent_id_fk"))
 	Category parent;
 
 	@OneToMany(mappedBy = "parent")
@@ -44,8 +44,8 @@ public class Category
     @ManyToMany
     @JoinTable(
         name = "category_attribute",
-        joinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "category_id")},
-        inverseJoinColumns = {@JoinColumn(name = "attribute_id", referencedColumnName = "attribute_id   ")})
+        joinColumns = {@JoinColumn(name = "category_id", foreignKey=@ForeignKey(name = "category_attribute_category_id_fk"))},
+        inverseJoinColumns = {@JoinColumn(name = "attribute_id", foreignKey=@ForeignKey(name = "category_attribute_attribute_id_fk"))})
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @BatchSize(size = 20)
     Set<Attribute> attributes = new HashSet<>();

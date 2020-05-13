@@ -47,8 +47,8 @@ public class Product
     @ManyToMany
     @JoinTable(
         name = "product_categories",
-        joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
-        inverseJoinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "category_id")})
+        joinColumns = {@JoinColumn(name = "product_id", foreignKey=@ForeignKey(name = "product_categories_product_id_fk"))},
+        inverseJoinColumns = {@JoinColumn(name = "category_id", foreignKey=@ForeignKey(name = "product_categories_category_id_fk"))})
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @BatchSize(size = 20)
     Set<Category> categories = new HashSet<>();
@@ -57,8 +57,8 @@ public class Product
     @ManyToMany
     @JoinTable(
         name = "product_attribute_values",
-        joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
-        inverseJoinColumns = {@JoinColumn(name = "attribute_value_id", referencedColumnName = "attribute_value_id")})
+        joinColumns = {@JoinColumn(name = "product_id", foreignKey=@ForeignKey(name = "product_attribute_values_product_id_fk"))},
+        inverseJoinColumns = {@JoinColumn(name = "attribute_value_id", foreignKey=@ForeignKey(name = "product_attribute_values_attribute_value_id_fk"))})
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @BatchSize(size = 20)
     Set<AttributeValue> attributeValues = new HashSet<>();

@@ -31,12 +31,12 @@ public class Bid
 	protected MonetaryAmount amount;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_id")
+	@JoinColumn(name = "product_id", foreignKey=@ForeignKey(name = "bid_product_id_fk"))
 	@JsonIgnore
 	Product product;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", foreignKey=@ForeignKey(name = "bid_user_id_fk"))
 	@JsonIgnore
 	User user;
 }
